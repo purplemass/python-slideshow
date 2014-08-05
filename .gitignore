@@ -1,4 +1,4 @@
-
+settings/settings_local.py
 # common folders
 logs/
 tmp/

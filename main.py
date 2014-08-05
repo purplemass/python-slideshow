@@ -1,20 +1,15 @@
 # ----------------------------------------------------
-# CONFIG
 
-photos_folder = "//sayfromage/photos_animated_366x549/"
-# photo = "Say_Fromage-76.jpg"
-photo_id = 1
-
-# ----------------------------------------------------
-
-import sys
-sys.path.insert(0, './lib')
-
+from settings import settings
 import pyglet
 
 # ----------------------------------------------------
 
-pyglet.resource.path = [photos_folder]
+photo_id = 1
+
+# ----------------------------------------------------
+
+pyglet.resource.path = [settings.PHOTOS_FOLDER]
 pyglet.resource.reindex()
 
 # window = pyglet.window.Window()
@@ -34,7 +29,7 @@ label = pyglet.text.Label(
 )
 
 # image = pyglet.resource.image('background1.jpg') # same resource/local
-foreground_image = pyglet.image.load('//sayfromage/themes/background4.jpg')
+foreground_image = pyglet.image.load(settings.FOREGROUND_IMAGE)
 background_image = pyglet.resource.image("Say_Fromage-%s.jpg" % photo_id)
 
 # background_image.anchor_x = (background_image.width/2)
@@ -84,75 +79,3 @@ if __name__ == '__main__':
     pyglet.app.run()
 
 # ----------------------------------------------------
-
-"""
-
-# ----------------------------------------------------
-
-from pyglet import clock
-dt = clock.tick()
-print dt
-print 'FPS is %f' % clock.get_fps()
-
-# ----------------------------------------------------
-
-window = pyglet.window.Window(visible=False)
-window.set_visible()
-
-# ----------------------------------------------------
-
-# print all events to console
-window.push_handlers(pyglet.window.event.WindowEventLogger())
-
-# ----------------------------------------------------
-
-from pyglet.window import mouse
-
-@window.event
-def on_mouse_press(x, y, button, modifiers):
-    if button == mouse.LEFT:
-        msg = "LEFT"
-    elif button == mouse.RIGHT:
-        msg = "RIGHT"
-    else:
-        msg = ""
-    print 'The %s mouse button was pressed at (%s, %s)' % (msg, x, y)
-
-# ----------------------------------------------------
-
-from pyglet.window import key
-
-@window.event
-def on_key_press(symbol, modifiers):
-    print 'A key was pressed'
-    if symbol == key.A:
-        print 'The "A" key was pressed.'
-    elif symbol == key.LEFT:
-        print 'The left arrow key was pressed.'
-    elif symbol == key.ENTER:
-        print 'The enter key was pressed.'
-
-# ----------------------------------------------------
-
-NOT SURE ABOUT THIS ONE:
-
-event_loop = pyglet.app.EventLoop()
-
-@event_loop.event
-def on_window_close(window):
-    print 'pp'
-    event_loop.exit()
-
-http://www.pyglet.org/doc/api/frames.html?page=http://www.pyglet.org/doc/api/pyglet.gl.Config-class.html
-
-# ----------------------------------------------------
-
-http://tareqalam.com/2013/12/14/importerror-entry-point-console_scripts-easy_install-not-found/
-http://svn.pythonmac.org/py2app/py2app/trunk/doc/index.html#uninstalling-py2app-0-2-x-or-earlier
-
-sudo /Library/Frameworks/Python.framework/Versions/2.7/bin/py2applet --make-setup bob.py -i lib/
-python setup.py py2app -A
-
-# ----------------------------------------------------
-
-"""
