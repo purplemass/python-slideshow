@@ -1,0 +1,19 @@
+
+# common folders
+logs/
+tmp/
+
+# common file types
+*.ai
+*.psd
+*.pdf
+*.pyc
+
+# MAC
+.DS_Store
+*.DS*
+._*
+.com.apple.timemachine.supported
+
+# PC
+Thumbs.db
