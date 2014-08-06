@@ -41,12 +41,11 @@ class App(object):
 
         self.win.on_show = self.on_show
         self.win.on_hide = self.on_hide
-        self.win.draw = self.draw
+        self.win.on_draw = self.draw
 
     def run(self):
-        interval = 1/120.0
+        interval = 1/(settings.WINDOW['framerate']*2.0)
         pyglet.clock.schedule_interval(self.update, interval)
-        pyglet.clock.schedule_interval(self.draw, interval)
         pyglet.app.run()
 
     def on_show(self):
@@ -55,7 +54,7 @@ class App(object):
     def on_hide(self):
         print "HIDE!"
 
-    def draw(self, dt):
+    def draw(self):
         self.background_image = pyglet.resource.image("Say_Fromage-%s.jpg" % self.photo_id)
         self.background_image.blit(0, 0)
         self.label.draw()

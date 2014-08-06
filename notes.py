@@ -8,10 +8,23 @@ print 'FPS is %f' % clock.get_fps()
 
 # ----------------------------------------------------
 
+def update():
+    pass
+
+# ----------------------------------------------------
+
 import pyglet
 
 window = pyglet.window.Window(visible=False)
 window.set_visible()
+
+interval = 1/20.0
+pyglet.clock.schedule_interval(update, interval)
+pyglet.clock.set_fps_limit(10)
+
+# or (cannot set frame rate)
+
+pyglet.clock.schedule(update)
 
 # ----------------------------------------------------
 
