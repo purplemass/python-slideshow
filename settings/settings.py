@@ -11,6 +11,18 @@ sys.path.append(path.join(PROJECT_ROOT, '../lib/'))
 
 # ----------------------------------------------------
 
+DEBUG = True
+
+WINDOW = {
+    'width': 100,
+    'height': 200,
+    'fullscreen': False,
+    'vsync': True,
+    'framerate': 60
+}
+
+# ----------------------------------------------------
+
 # import local settigns
 try:
     from settings_local import *
