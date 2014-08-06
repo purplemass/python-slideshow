@@ -14,8 +14,8 @@ sys.path.append(path.join(PROJECT_ROOT, '../lib/'))
 DEBUG = True
 
 WINDOW = {
-    'width': 100,
-    'height': 200,
+    'width': 366,
+    'height': 549,
     'fullscreen': False,
     'vsync': True,
     'framerate': 60

@@ -8,6 +8,8 @@ print 'FPS is %f' % clock.get_fps()
 
 # ----------------------------------------------------
 
+import pyglet
+
 window = pyglet.window.Window(visible=False)
 window.set_visible()
 
@@ -15,6 +17,26 @@ window.set_visible()
 
 # print all events to console
 window.push_handlers(pyglet.window.event.WindowEventLogger())
+
+# ----------------------------------------------------
+
+image = pyglet.resource.image('background1.jpg') # same resource/local
+image_x = (image.width/2)
+image_y = (image.height/2)
+
+@window.event
+def on_draw():
+    window.clear()
+    image = pyglet.resource.image("Say_Fromage.jpg")
+    image.blit(0, 0)
+
+@window.event
+def on_show():
+    print "SHOW!"
+
+@window.event
+def on_hide():
+    print "HIDE!"
 
 # ----------------------------------------------------
 
