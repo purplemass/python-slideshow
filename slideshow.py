@@ -11,18 +11,11 @@ class App(object):
     xpos = 0
     xspeed = 10
 
-    def __init__(self):
+    def __init__(self, window):
+        self.win = window
         pyglet.resource.path = [settings.PHOTOS_FOLDER]
         pyglet.resource.reindex()
 
-        self.win = pyglet.window.Window(
-            settings.WINDOW['width'],
-            settings.WINDOW['height']
-        )
-        self.win.set_fullscreen(
-            settings.WINDOW['fullscreen']
-        )
-        self.win.clear()
         self.fps_display = pyglet.clock.ClockDisplay()
 
         self.label = pyglet.text.Label(
@@ -46,7 +39,6 @@ class App(object):
     def run(self):
         interval = 1/(settings.WINDOW['framerate']*2.0)
         pyglet.clock.schedule_interval(self.update, interval)
-        pyglet.app.run()
 
     def on_show(self):
         print "SHOW!"

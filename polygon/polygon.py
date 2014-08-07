@@ -4,7 +4,7 @@ from random import random
 
 from settings import settings
 
-from pyglet import clock, font, window
+from pyglet import clock, font
 from pyglet.gl import glMatrixMode, glLoadIdentity, gluOrtho2D, glClear
 from pyglet.gl import glTranslatef, glRotatef, glScalef
 from pyglet.gl import glBegin, glEnd, glColor4f, glVertex2f
@@ -14,32 +14,33 @@ from pyglet.gl import GL_PROJECTION, GL_COLOR_BUFFER_BIT, GL_MODELVIEW, GL_TRIAN
 
 class App(object):
 
-    def __init__(self):
-        self.win = window.Window(
-            fullscreen=settings.WINDOW['fullscreen'],
-            vsync=settings.WINDOW['vsync']
-        )
-
+    def __init__(self, window):
+        self.win = window
         self.world = World()
         self.camera = Camera(self.win, zoom=100.0)
         self.hud = Hud(self.win)
 
         clock.set_fps_limit(settings.WINDOW['framerate'])
 
-    def mainLoop(self):
-        while not self.win.has_exit:
-            self.win.dispatch_events()
+    def run(self):
+        interval = 1/(settings.WINDOW['framerate']*2.0)
+        clock.schedule_interval(self.update, interval)
 
-            self.world.tick()
+    def update(self, dt):
+    # while not self.win.has_exit:
+        self.win.dispatch_events()
 
-            self.camera.worldProjection()
-            self.world.draw()
+        self.world.tick()
 
-            self.camera.hudProjection()
-            self.hud.draw(len(self.world.ents))
+        self.camera.worldProjection()
+        self.world.draw()
 
-            clock.tick()
-            self.win.flip()
+        self.camera.hudProjection()
+        self.hud.draw(len(self.world.ents))
+
+        # clock.tick()
+        # self.win.flip()
+        pass
 
 # ----------------------------------------------------
 
